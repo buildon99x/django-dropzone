@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{%block content%}
+
+<h1>Files</h1>
+<ul>
+{% for image in object_list %}
+    <li>{{ image.image }} </li>
+{% empty %}
+    <li>No articles yet.</li>
+{% endfor %}
+</ul>
+ 
+{%endblock%} 
