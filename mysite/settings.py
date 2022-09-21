@@ -39,8 +39,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'core',
-    'django_tables2',
+    'core',                 # /core 디렉토리의 구현한 어플리케이션
+    'django_tables2',       # /fs/list URL 에서 사용하는 table 모듈 
+    'bootstrap5',           # bootstrap 스타일시트 모듈
 ]
 
 MIDDLEWARE = [

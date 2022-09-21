@@ -1,0 +1,25 @@
+__pycache__/
+*__pycache__/
+*.pyc
+*.pyd
+*.pyo
+*$py.class
+
+# Environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# mkdocs documentation
+/site
+
+# Cython debug symbols
+cython_debug/
+
+fs_media/
+
+core/__pycache__/*.pyc

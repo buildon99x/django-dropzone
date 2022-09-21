@@ -1,14 +1,39 @@
 {% extends 'base.html' %}
-
+{% load bootstrap5 %}
 {%block content%}
-<h1>Files</h1>
-<ul>
 <!--form action="/filelist/" method='GET' >
     {% csrf_token %}
     <input name="keyword">
 </form-->
 
 {% load django_tables2 %}
-{% render_table table %}
- 
+<div class="container">
+    <h2>File list</h2>
+    <div class="row justify-content-start">
+        <form action="" method="get" class="row row-cols-3 justify-content-start">
+            {% csrf_token %}
+                <!--{% bootstrap_form filter.form %}-->
+                <div class="col-sm">
+                    <div class="form-floating">
+                        <input type="text" class="form-control form-control-sm" name="{{ filter.form.file_in.name }}" value="{{ filter.form.file_in.value }}" placeholder="File" style="width:210px">
+                        <label>File:</label>
+                    </div>
+                </div>
+                <div class="col-sm">
+                    <div class="form-floating">
+                        <input type="text" class="form-control form-control-sm" name="{{ filter.form.tags_in.name }}" value="{{ filter.form.tags_in.value }}" placeholder="Tags" style="width:210px">
+                        <label>Tags:</label>
+                    </div>
+                </div>
+                <div class="col-sm">
+                    <div style="height:5px"></div>
+                    <button type="submit" class="btn btn-primary btn-lg">Search</button>
+                </div>
+        </form>
+    </div>
+    <div style="height:10px"></div>
+    <div class="row  justify-content-start">
+        {% render_table table %}
+    </div>
+</div>
 {%endblock%} 

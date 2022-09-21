@@ -16,7 +16,7 @@ Including another URLconf
 from django.urls import path, include
 from django.conf import settings 
 from django.conf.urls.static import static
-import os
+from django.shortcuts import redirect
 
 if (settings.DEBUG):
     static_urls = static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
@@ -24,6 +24,7 @@ else:
     static_urls = []
 
 urlpatterns = [
+    path('', lambda req: redirect('/fs/')),
     path('fs/', include('core.urls')),
 ] + static_urls
 

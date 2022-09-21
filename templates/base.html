@@ -1,4 +1,5 @@
 {% load static %}
+{% load bootstrap5 %}
 <!doctype html>
 <html lang="en">
   <head>
@@ -12,19 +13,26 @@
     <!--link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"-->
     <!--script src="https://rawgit.com/enyo/dropzone/master/dist/dropzone.js"></script-->
     <!--link rel="stylesheet" href="https://rawgit.com/enyo/dropzone/master/dist/dropzone.css"-->
+
     <!-- custom css & js -->
+    <script src="{% static '/utils.js' %}"></script>
+
     <link rel="stylesheet" href="{% static '/django_tables2/themes/paleblue/css/screen.css' %}" />
     <link rel="stylesheet" href="{% static '/style.css' %}">
     
     <link rel="stylesheet" href="{% static '/dropzone/dropzone.css' %}">
     <script src="{% static '/dropzone/dropzone.js' %}"></script>
+
     <link rel="stylesheet" href="{% static '/font-awesome/font-awesome.min.css' %}">
 
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+    
     <title>PlayLog File Manager| {% block title %}{% endblock title %}</title>
   </head>
   <body>
     <div></div>
-    <div class="container mt-3">
+    <div class="container">
         {% block content %}
         {% endblock content %}
     </div>

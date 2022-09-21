@@ -49,7 +49,7 @@ class Person(models.Model):
 ### 2) 마이그레이션 파일 생성
 
 ```bash
-python manage.py makemigrations <app name>
+python manage.py makemigrations core
 
 ```
 
@@ -64,7 +64,12 @@ Migrations for 'core':
 
 ### 3) 마이그레이션 실행
 ```bash
-python manage.py migrate <app name>
+python manage.py migrate core
+```
+
+테스트로 실행해볼 경우 --fake 옵션을 지정하면 된다.
+```bash
+python manage.py migrate core --fake
 ```
 
 예시)
@@ -83,3 +88,6 @@ django.core.exceptions.ImproperlyConfigured: You're using the staticfiles app wi
 ```python
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 ```
+
+# Reference Site
+* [bootstrap](https://getbootstrap.com/docs/5.0/forms/layout/)

@@ -5,8 +5,10 @@ from django.http import HttpResponse, JsonResponse
 from .models import LogFile
 from datetime import datetime
 import django_tables2 as tables
-
-# Create your views here.
+import django_filters
+#from  django_filters.widgets import RangeWidget
+#from django_filters.widgets import RangeFilter
+from django_filters.views import FilterView
 
 
 def get_basedir(filename):
@@ -26,12 +28,16 @@ def common_response(rescode=0, msg="", data=None, status=None):
         return JsonResponse({'rescode':rescode, 'msg':msg, 'data':data}, status=status)
 
 def file_upload(request):
+    ''' 업로드된 파일을 처리/저장하는 함수 
+    '''
     # print(request.FILES)
     print("file_upload")
     if request.method == 'POST':
         my_file=request.FILES.get('file')
+        tags_in=request.POST.get('tags_in')
         client_ip = request.META['REMOTE_ADDR']
-        print(my_file.name)
+        print(f"Uploaded files : {my_file.name} ({my_file.size})")
+        print(tags_in)
         basedir = get_basedir(my_file.name)
         fileexists = LogFile.objects.filter(file=basedir+"/"+my_file.name).exists() 
         save_file = basedir+"/"+my_file.name
@@ -39,7 +45,8 @@ def file_upload(request):
         #print( fileexists )
         if (not fileexists):
             print(basedir)
-            LogFile.objects.create(file=my_file, udt_ip=client_ip)
+            
+            LogFile.objects.create(file=my_file, tags=tags_in, file_size=my_file.size, udt_ip=client_ip)
             #return HttpResponse(f'Success. {my_file.name} saved.!')
             msg = f'Success. {my_file.name} --> {save_file} saved.!'
             return common_response(0, msg)
@@ -50,25 +57,57 @@ def file_upload(request):
 
 class LogFileTable(tables.Table):
     table_pagination = True
+
+    file_size = tables.Column(accessor='get_file_size_kb', verbose_name='file_size')
+    udt  = tables.DateTimeColumn(format ='Y-m-d h:i:s', verbose_name='udt')
     class Meta:
         attrs = {'class': 'paleblue'}
+        fields = ["id", "file", "file_size", "udt_ip", "udt", "tags"]
         model = LogFile
 
-class LogFileListView(tables.SingleTableView):
+class LogFileFiter(django_filters.FilterSet):
+    #udt = django_filters.NumberFilter(field_name='udt', lookup_expr='udt')
+    #udt__gt = django_filters.NumberFilter(field_name='udt', lookup_expr='udt__gt')
+    #udt__lt = django_filters.NumberFilter(field_name='udt', lookup_expr='udt__lt')
+    
+    # django_filters.CharFilter는 django.form.fields.Field가 최상위 객체
+    # https://github.com/django/django/blob/main/django/forms/fields.py
+    # 
+    # https://github.com/carltongibson/django-filter/blob/2c81768188cd4ce65d5fd20919ea4a8b2b5f214b/django_filters/fields.py
+    file_in = django_filters.CharFilter(field_name='file', label="File", lookup_expr='contains', initial="")
+    tags_in = django_filters.CharFilter(field_name='tags', label="Tags", lookup_expr='contains', initial="")
+    #udt_in = django_filters.DateFromToRangeFilter(field_name='udt', label="Time", initial="")
+    #file_in.form.value=""
+    #tags_in.form.value=""
+    #file_in.field.widget = forms.TextInput(attrs={'class': 'form-control'})
+    #udt  = django_filters.RangeFilter(field_name='udt', widget=CustomDateRangeWidget) #, widget=RangeWidget(attrs={'placeholder': 'YYYY/MM/DD'})
+    #utd_ip__name = django_filters.CharFilter(field_name='utd_ip', lookup_expr='contains')
+    class Meta:
+        model = LogFile
+        #fields = {
+        #    'file': ['contains'],
+        #}
+        exclude = ['file']
+        fields = ['tags']
+
+class LogFileListView(FilterView, tables.SingleTableView):
     table_class = LogFileTable
+    filterset_class = LogFileFiter
     #queryset = LogFile.objects.all().order_by('-udt') #Vehicles.objects.filter(makename__icontains='make')
     template_name = 'filelist.html'
     table_pagination = {"per_page": 20}
     fields = ('id', 'file', 'tags', 'udt_ip', 'udt')
     def get_queryset(self):
-        page = self.request.GET.get("page")
-        keyword = "" #self.request.GET.get("keyword")
-        print(f"page:{page}")
+        # udt DESC 정렬 실행.
+        return LogFile.objects.all().order_by('-udt') 
+        #page = self.request.GET.get("page")
+        #keyword = "" #self.request.GET.get("keyword")
+        #print(f"page:{page}")
         #return LogFile.objects.all().order_by('-udt') 
-        if ( keyword==""):
-            return LogFile.objects.all().order_by('-udt') 
-        else:
-            return LogFile.objects.filter(file__contains=keyword).order_by('-udt') 
+        #if ( keyword==""):
+        #    return LogFile.objects.all().order_by('-udt') 
+        #else:
+        #    return LogFile.objects.filter(file__contains=keyword).order_by('-udt') 
     
     '''
     def get_queryset(self):
@@ -79,12 +118,14 @@ class LogFileListView(tables.SingleTableView):
         return render(self.request, self.template_name, context)
     '''
 
+''' 미사용.
+from django import forms
+class FileUploadForm(forms.Form):
+    file = forms.FileField(required=True)
+    tags_in = forms.CharField(max_length=50, initial="test")
+'''
 class IndexView(tables.SingleTableView):
     table_class = LogFileTable
-    queryset = LogFile.objects.all().order_by('-udt')
     template_name='index.html'
     model = LogFile
-    table_pagination = {"per_page": 20}
-    #paginate_by = 100  # if pagination is desired
-    #ordering = ["-udt"]
-    
+    #form = FileUploadForm()
