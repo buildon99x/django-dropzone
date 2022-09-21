@@ -5,6 +5,7 @@ const myDropzone= new Dropzone('#my-dropzone',{
     maxFilesize:4,      //mb
     addRemoveLinks: true,
     dictRemoveFile : "X",
+    dictDefaultMessage: "<font style='font-size:11px'>해당 영역을 클릭하거나, 파일을 드래그하여 넣으면 업로드 진행 됩니다.</font>",
     acceptedFiles:'.png,.jpg,.txt,.log',
     init: function() {
         this.on('accept', function(file, done) {

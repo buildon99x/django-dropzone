@@ -7,8 +7,27 @@
 </form-->
 
 {% load django_tables2 %}
-<div class="container">
-    <h2>File list</h2>
+    <script>
+        function search_form_reset(form, submit)
+        {
+            console.log(form)
+            //form["{{ filter.form.file_in.name }}"].value='';
+            //form["{{ filter.form.tags_in.name }}"].value='';
+            var em = form.elements;
+            console.log(em)
+            //form.reset();
+            for (var i = 0; i < em.length; i++) {
+                if (em[i].type == 'text') 
+                    em[i].value = ''; em[i].defaultValue = '';
+                if (em[i].type == 'checkbox') em[i].checked = false;
+                if (em[i].type == 'radio') em[i].checked = false;
+                if (em[i].type == 'select-one') em[i].options[0].selected = true;
+                if (em[i].type == 'textarea') em[i].value = '';
+            }
+            form.submit();
+        }
+    </script>
+    <h2>파일 목록</h2>
     <div class="row justify-content-start">
         <form action="" method="get" class="row row-cols-3 justify-content-start">
             {% csrf_token %}
@@ -27,7 +46,10 @@
                 </div>
                 <div class="col-sm">
                     <div style="height:5px"></div>
-                    <button type="submit" class="btn btn-primary btn-lg">Search</button>
+                    <button type="submit" class="btn btn-primary btn-lg">검색</button>
+                    <button type="button" class="btn btn-primary btn-lg" onclick="javascript:search_form_reset(this.form, true);">초기화</button>
+                    <!--input class="btn btn-primary btn-lg" type="reset" value="Reset"-->
+                    <!---- onlclick="alert(1);console.log(this.form);this.form.reset();this.form.submit();" -->
                 </div>
         </form>
     </div>
@@ -35,5 +57,4 @@
     <div class="row  justify-content-start">
         {% render_table table %}
     </div>
-</div>
 {%endblock%} 

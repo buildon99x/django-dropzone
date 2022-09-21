@@ -1,22 +1,27 @@
 {% extends 'base.html' %}
-
-{%block content%}
+{% block content %}
 {% load static %}
-  <h3>로그 파일 업로더</h3>
-  <br>
-  <form enctype='multipart/form-data' action="/fs/upload/" method='POST' class="dropzone dz" id="my-dropzone" >
-      {% csrf_token %}
-      <div class="fallback">
-        <input name="file" type="file" multiple />
-      </div>
+<div  class="row" style="height:10px"></div>
+<div class="row g-0">
+  <div class="col-4">
+    <div style="height:10px"></div>
+    <h2>로그 파일 업로더</h2>
+    <form enctype='multipart/form-data' action="/fs/upload/" method='POST' class="dropzone dz" id="my-dropzone" >
+        {% csrf_token %}
+        <div class="fallback">
+          <input name="file" type="file" multiple />
+        </div>
 
-      <div class="input-group input-group-sm mb-3">
-        <span class="input-group-text" id="inputGroup-sizing-sm">Tags:</span>
-        <input type="text" class="form-control form-control-sm" name="tags_in" value="{{ form.tags_in.value }}" maxlength="50" placeholder="ex) 쉽야드테스트, P7">
-    </div>
-  </form>
-  <script type="text/javascript" src="{% static '/fsdropzone_main.js' %}"></script>
-  <br/>
-  <iframe id="filelist" src="/fs/list/" width="1000px" height="600px" frameborder="0" onload="resizeIframe(this);"></iframe>
-  <div style="height:20px"></div>
+        <div class="input-group input-group-sm mb-3">
+          <span class="input-group-text" id="inputGroup-sizing-sm">Tags:</span>
+          <input type="text" class="form-control form-control-sm" name="tags_in" value="{{ form.tags_in.value }}" maxlength="50" placeholder="ex) 쉽야드테스트, P7">
+      </div>
+    </form>
+    <script type="text/javascript" src="{% static '/fsdropzone_main.js' %}"></script>
+  </div>
+  <div class="col-md-auto">
+    <iframe id="filelist" src="/fs/list/" width="800px" height="700px" frameborder="0" onload="resizeIframe(this);"></iframe>
+  </div>
+</div>
+<div  class="row" style="height:20px"></div>
 {%endblock%}
