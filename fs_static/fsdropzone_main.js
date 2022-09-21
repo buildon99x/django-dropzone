@@ -32,6 +32,10 @@ const myDropzone= new Dropzone('#my-dropzone',{
         this.on("success", function(response) {
             // 성공할 경우 response는 file객체가 전달됨.
             console.log("#onsuccess")
+            if ( document.getElementById('filelist') )
+            {
+                document.getElementById('filelist').contentWindow.location.reload();
+            }
             //console.log(response.status)
             //console.log(response)
         });
