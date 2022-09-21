@@ -10,7 +10,6 @@ import django_filters
 #from django_filters.widgets import RangeFilter
 from django_filters.views import FilterView
 
-
 def get_basedir(filename):
     # Create your models here.
     now = datetime.now()    
@@ -56,16 +55,21 @@ def file_upload(request):
     return common_response(-1002, 'Invailid request. only POST', status=400)
 
 class LogFileTable(tables.Table):
+    ''' LogFileListView 에서 파일 리스트 테이블 클래스
+    '''
     table_pagination = True
 
-    file_size = tables.Column(accessor='get_file_size_kb', verbose_name='file_size')
-    udt  = tables.DateTimeColumn(format ='Y-m-d h:i:s', verbose_name='udt')
+    file_size = tables.Column(accessor='get_file_size_kb', verbose_name='Size(KB)', attrs={ "td": {"style": "text-align:right"} })
+    udt  = tables.DateTimeColumn(format ='Y-m-d h:i:s', verbose_name='Time')
+    udt_ip = tables.Column(verbose_name='IP Addr')
     class Meta:
         attrs = {'class': 'paleblue'}
         fields = ["id", "file", "file_size", "udt_ip", "udt", "tags"]
         model = LogFile
 
 class LogFileFiter(django_filters.FilterSet):
+    ''' LogFileListView 에서 파일 리스트 필터(검색) 클래스
+    '''
     #udt = django_filters.NumberFilter(field_name='udt', lookup_expr='udt')
     #udt__gt = django_filters.NumberFilter(field_name='udt', lookup_expr='udt__gt')
     #udt__lt = django_filters.NumberFilter(field_name='udt', lookup_expr='udt__lt')
@@ -91,6 +95,8 @@ class LogFileFiter(django_filters.FilterSet):
         fields = ['tags']
 
 class LogFileListView(FilterView, tables.SingleTableView):
+    ''' /fs/list : 파일 리스트 뷰 클래스
+    '''
     table_class = LogFileTable
     filterset_class = LogFileFiter
     #queryset = LogFile.objects.all().order_by('-udt') #Vehicles.objects.filter(makename__icontains='make')
@@ -125,6 +131,8 @@ class FileUploadForm(forms.Form):
     tags_in = forms.CharField(max_length=50, initial="test")
 '''
 class IndexView(tables.SingleTableView):
+    ''' /fs : 파일 관리자 메인 화면 ( 업로드 & List )
+    '''
     table_class = LogFileTable
     template_name='index.html'
     model = LogFile
