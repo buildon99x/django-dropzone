@@ -1,12 +1,23 @@
 {% extends 'base.html' %}
 
 {%block content%}
-<h6>UPLOAD MULTIPLE IMAGES NOW</h6>
+{% load static %}
+
+<h3>로그 파일 업로더</h3>
 <br>
-<form enctype='multipart/form-data' action="upload/" method='POST' class="dropzone dz" id="my-dropzone" >
+
+<form enctype='multipart/form-data' action="/fs/upload/" method='POST' class="dropzone dz" id="my-dropzone" >
     {% csrf_token %}
     <div class="fallback">
       <input name="file" type="file" multiple />
     </div>
 </form>
+<script type="text/javascript" src="{% static '/fsdropzone_main.js' %}"></script>
+
+<!--
+<h3>Files</h3>
+{#% load django_tables2 %}
+{#% render_table table %}
+-->
+<iframe src="/fs/list/" widhth="800px" height="400px" border="0"></iframe>
 {%endblock%}

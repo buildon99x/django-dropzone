@@ -1,6 +1,37 @@
 https://github.com/nicksonlangat/django-dropzone
 
 
+
+pip install django-tables2
+pip install django
+
+
+### 3) 마이그레이션 코드 실행해서 테이블 생성하기 
+```bash
+python manage.py migrate <app name>
+```
+
+예시)
+```bash
+Operations to perform:
+  Apply all migrations: core
+Running migrations:
+  Applying core.0002_trans... OK
+```
+
+# 서버 구동
+
+### static 파일 수집 
+```bash
+python manage.py collectstatic
+```
+
+### 서버 시작
+```bash
+python runserver.py
+```
+
+
 # 모델 생성하는 방법. 
 [원문(https://learnbatta.com/course/django/django-create-table-from-model/)]
 
@@ -31,16 +62,24 @@ Migrations for 'core':
     - Create model Trans       
 ```
 
-
-### 3) 마이그레이션 코드 실행해서 테이블 생성하기 
+### 3) 마이그레이션 실행
 ```bash
 python manage.py migrate <app name>
 ```
 
 예시)
 ```bash
-Operations to perform:
-  Apply all migrations: core
-Running migrations:
-  Applying core.0002_trans... OK
+Migrations for 'core':
+  core\migrations\0002_trans.py
+    - Create model Trans       
+```
+
+# 이슈
+### python manage.py collectstatic 에러
+```bash
+django.core.exceptions.ImproperlyConfigured: You're using the staticfiles app without having set the STATIC_ROOT setting to a filesystem path.
+``` 
+위와 같은 오류가 발생하면 settings.py에 다음 코드 추가.
+```python
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 ```

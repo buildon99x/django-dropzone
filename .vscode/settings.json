@@ -1,0 +1,25 @@
+{
+    "sqltools.connections": [
+        {
+            "mysqlOptions": {
+                "authProtocol": "default"
+            },
+            "previewLimit": 50,
+            "server": "10.60.100.21",
+            "port": 3306,
+            "driver": "MySQL",
+            "name": "10.60.100.21 Intra",
+            "group": "Project D",
+            "database": "db_matchlog",
+            "username": "jyyeom",
+            "password": "1q2w#E$R"
+        },
+        {
+            "previewLimit": 50,
+            "driver": "SQLite",
+            "database": "${workspaceFolder:django-dropzone}/db.sqlite3",
+            "name": "dropzone"
+        }
+    ],
+    "sqltools.useNodeRuntime": true
+}

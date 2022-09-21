@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Image, Trans
+from .models import LogFile
 # Register your models here.
-admin.site.register(Image)
-admin.site.register(Trans)
+admin.site.register(LogFile)
+#admin.site.register(Trans)

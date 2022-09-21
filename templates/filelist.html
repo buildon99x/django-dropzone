@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{%block content%}
+<h1>Files</h1>
+<ul>
+<!--form action="/filelist/" method='GET' >
+    {% csrf_token %}
+    <input name="keyword">
+</form-->
+
+{% load django_tables2 %}
+{% render_table table %}
+ 
+{%endblock%} 

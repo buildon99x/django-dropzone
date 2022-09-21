@@ -12,9 +12,14 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 
 from pathlib import Path
 
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 import os
+import mimetypes
+
+## javascript hosting 
+mimetypes.add_type("text/javascript", ".js", True)
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
@@ -24,9 +29,6 @@ SECRET_KEY = 'xr*ka17giro0cpj$(id%oggcirmgb!i8q1cn&3qez$=(f_*xel'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-
-ALLOWED_HOSTS = []
-
 
 # Application definition
 
@@ -38,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'core',
+    'django_tables2',
 ]
 
 MIDDLEWARE = [
@@ -68,6 +71,9 @@ TEMPLATES = [
     },
 ]
 
+X_FRAME_OPTIONS = 'ALLOWALL'
+XS_SHARING_ALLOWED_METHODS = ['POST','GET']
+
 WSGI_APPLICATION = 'mysite.wsgi.application'
 
 
@@ -85,6 +91,7 @@ DATABASES = {
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
 
+
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
@@ -100,6 +107,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+DJANGO_TABLES2_TEMPLATE = "django_tables2/semantic.html"
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/
@@ -114,16 +122,28 @@ USE_L10N = True
 
 USE_TZ = True
 
+#BASE_URL='/fileserver'
+
+USE_X_FORWARDED_HOST = True
+#FORCE_SCRIPT_NAME = '/fileserver'
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
-STATIC_URL = '/static/'
-if DEBUG:
-    STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
-else:
-    STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATIC_URL = 'fs_static/'
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-MEDIA_URL = '/media/'
+STATICFILES_DIRS = [
+        os.path.join (BASE_DIR, "fs_static"),
+        os.path.join (BASE_DIR, "fs_media"),
+    ]
+
+#STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+#STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+#if DEBUG:
+#    STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+#else:
+#   STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+MEDIA_URL = 'fs_media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'fs_media')
 ALLOWED_HOSTS = ['*']  
