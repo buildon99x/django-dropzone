@@ -9,12 +9,11 @@ import django_filters
 #from  django_filters.widgets import RangeWidget
 #from django_filters.widgets import RangeFilter
 from django_filters.views import FilterView
+import os 
+import logging
+from .models import get_basedir
 
-def get_basedir(filename):
-    # Create your models here.
-    now = datetime.now()    
-    basedir = filename[0:8]
-    return 'playlog/'+basedir 
+logger = logging.getLogger('default') 
 
 def common_response(rescode=0, msg="", data=None, status=None):
     res = {'rescode':rescode, 'msg':msg}
@@ -29,28 +28,29 @@ def common_response(rescode=0, msg="", data=None, status=None):
 def file_upload(request):
     ''' 업로드된 파일을 처리/저장하는 함수 
     '''
-    # print(request.FILES)
-    print("file_upload")
     if request.method == 'POST':
         my_file=request.FILES.get('file')
         tags_in=request.POST.get('tags_in')
-        client_ip = request.META['REMOTE_ADDR']
-        print(f"Uploaded files : {my_file.name} ({my_file.size})")
-        print(tags_in)
+        if ('HTTP_X_REAL_IP' in request.META.keys() ):
+            client_ip = request.META['HTTP_X_REAL_IP']
+        else:
+            client_ip = request.META['REMOTE_ADDR']
+        logger.info(f"Uploaded_file:{my_file.name} ({int(my_file.size/1024)}KB) ip:{client_ip} tags_in:{tags_in} [pid:{os.getpid()}]")
         basedir = get_basedir(my_file.name)
         fileexists = LogFile.objects.filter(file=basedir+"/"+my_file.name).exists() 
         save_file = basedir+"/"+my_file.name
         #print(connection.queries)
         #print( fileexists )
         if (not fileexists):
-            print(basedir)
-            
+            #print(basedir)
             LogFile.objects.create(file=my_file, tags=tags_in, file_size=my_file.size, udt_ip=client_ip)
             #return HttpResponse(f'Success. {my_file.name} saved.!')
-            msg = f'Success. {my_file.name} --> {save_file} saved.!'
+            msg = f'Saved_file:{my_file.name} -> {save_file}'
+            logger.info(f"{msg} ip:{client_ip} tags_in:{tags_in}")
             return common_response(0, msg)
         else:
             msg = f"Duplicate file-name. ({save_file})"
+            logger.info(f"{msg} ip:{client_ip} tags_in:{tags_in}")
             return common_response(-1001, msg, status=400)
     return common_response(-1002, 'Invailid request. only POST', status=400)
 

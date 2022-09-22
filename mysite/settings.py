@@ -41,7 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'core',                 # /core 디렉토리의 구현한 어플리케이션
     'django_tables2',       # /fs/list URL 에서 사용하는 table 모듈 
-    'bootstrap5',           # bootstrap 스타일시트 모듈
+    'bootstrap5',            # bootstrap 스타일시트 모듈
 ]
 
 MIDDLEWARE = [
@@ -115,7 +115,7 @@ DJANGO_TABLES2_TEMPLATE = "django_tables2/semantic.html"
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Seoul' #'UTC'
 
 USE_I18N = True
 
@@ -134,17 +134,80 @@ USE_X_FORWARDED_HOST = True
 STATIC_URL = 'fs_static/'
 
 STATICFILES_DIRS = [
-        os.path.join (BASE_DIR, "fs_static"),
-        os.path.join (BASE_DIR, "fs_media"),
-    ]
+    os.path.join (BASE_DIR, "fs_static"),
+    os.path.join (BASE_DIR, "fs_media"),
+]
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'fs_static')
 
 #STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 #STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 #if DEBUG:
-#    STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+    #STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 #else:
-#   STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-
+#    STATIC_ROOT = os.path.join(BASE_DIR, 'fs_static')
+    
 MEDIA_URL = 'fs_media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'fs_media')
 ALLOWED_HOSTS = ['*']  
+
+# 로그 설정
+U_LOGFILE_POSTFIX = os.getpid()
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'standard': {
+            'format' : "[%(asctime)s] %(levelname)s [%(name)s:%(lineno)s] %(message)s",
+            
+        },
+        'simple': {
+            '()': 'django.utils.log.ServerFormatter',
+            'format': '[{server_time}] {levelname} {message}',
+            'datefmt':"%d/%b/%Y %H:%M:%S",
+            'style': '{',
+        },
+    },
+    'filters': {
+        'require_debug_false': {
+            '()': 'django.utils.log.RequireDebugFalse'
+        }
+    },
+    'handlers': {
+        'console': {
+            'level': 'INFO',
+            'class': 'logging.StreamHandler',
+            'formatter': 'simple',
+        },
+        'mail_admins': {
+            'level': 'ERROR',
+            'filters': ['require_debug_false'],
+            'class': 'django.utils.log.AdminEmailHandler',
+        },
+        'logfile': {
+            'level':'INFO',
+            'class':'logging.handlers.RotatingFileHandler',
+            'encoding':'utf8',
+            'filename': BASE_DIR / f'logs/mysite_{U_LOGFILE_POSTFIX}.log',
+            'maxBytes': 5 * 1024 * 1024,    #Max size
+            'backupCount': 5,               #최대보관갯수
+            'formatter': 'standard',
+        },
+    },
+    'loggers': {
+        'django.request': {
+            'handlers': ['mail_admins'],
+            'level': 'ERROR',
+            'propagate': True,
+        },
+        'default': {
+            'handlers': ['logfile', 'console'],
+            'level': 'INFO',
+            'propagate': True,
+        }
+    }
+}
+
+### 서버 구동 정보 
+U_HOST = '127.0.0.1'
+U_PORT_RANGE = (8000, 8003)     # ex) ( 8000, 8003 ) 으로 지정할 경우 8000~8003 까지 총 4개의 어플리케이션 구동된다.

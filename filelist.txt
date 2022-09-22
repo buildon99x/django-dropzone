@@ -1,0 +1,409 @@
+���� PATH�� ����Դϴ�.
+���� �Ϸ� ��ȣ�� 00000019 BE3C:F3AC�Դϴ�.
+E:\GIT\DJANGO-DROPZONE
+��  .gitignore
+��  db.sqlite3
+��  filelist.txt
+��  manage.py
+��  Pipfile
+��  Pipfile.lock
+��  readme.md
+��  requirements.txt
+��  run_debug.bat
+��  run_server.py
+��  
+����.vscode
+��      settings.json
+��      
+����core
+��  ��  admin.py
+��  ��  apps.py
+��  ��  models.py
+��  ��  tests.py
+��  ��  urls.py
+��  ��  views.py
+��  ��  __init__.py
+��  ��  
+��  ����migrations
+��  ��  ��  0001_initial.py
+��  ��  ��  0002_trans.py
+��  ��  ��  0003_image_udt.py
+��  ��  ��  0004_auto_20220920_2003.py
+��  ��  ��  0005_auto_20220922_1116.py
+��  ��  ��  __init__.py
+��  ��  ��  
+��  ��  ����__pycache__
+��  ��          0001_initial.cpython-37.pyc
+��  ��          0002_trans.cpython-37.pyc
+��  ��          0003_image_udt.cpython-37.pyc
+��  ��          0004_auto_20220920_2003.cpython-37.pyc
+��  ��          0005_auto_20220922_1116.cpython-37.pyc
+��  ��          __init__.cpython-37.pyc
+��  ��          
+��  ����__pycache__
+��          admin.cpython-37.pyc
+��          apps.cpython-37.pyc
+��          models.cpython-37.pyc
+��          urls.cpython-37.pyc
+��          views.cpython-37.pyc
+��          __init__.cpython-37.pyc
+��          
+����fs_media
+��  ����playlog
+��      ����2.jpg
+��      ��      2.jpg
+��      ��      
+��      ����20220616
+��      ��      20220616150005_10127570_playlog.log
+��      ��      20220616150005_10127571_playlog.log
+��      ��      20220616150006_10127572_playlog.log
+��      ��      20220616150007_10127573_playlog.log
+��      ��      20220616150015_10127574_playlog.log
+��      ��      20220616150016_10127575_playlog.log
+��      ��      20220616150018_10127576_playlog.log
+��      ��      20220616150019_10127577_playlog.log
+��      ��      20220616150023_10127578_playlog.log
+��      ��      20220616150025_10127579_playlog.log
+��      ��      20220616150025_10127580_playlog.log
+��      ��      20220616150027_10127581_playlog.log
+��      ��      20220616150031_10127582_playlog.log
+��      ��      
+��      ����20220621
+��      ��      20220621150000_10239843_playlog.log
+��      ��      20220621150003_10239844_playlog.log
+��      ��      20220621150004_10239845_playlog.log
+��      ��      20220621150005_10239846_playlog.log
+��      ��      20220621150007_10239847_playlog.log
+��      ��      20220621150007_10239848_playlog.log
+��      ��      20220621150010_10239849_playlog.log
+��      ��      
+��      ����pandas_c
+��      ��      pandas_cheatsheet.png
+��      ��      
+��      ����Screensh
+��      ��      Screenshot_20220429-151409.jpg
+��      ��      Screenshot_20220919-205502.jpg
+��      ��      
+��      ����_etc
+��      ��      1.png
+��      ��      ��ũ����1.png
+��      ��      ��ũ����1_-_���纻.png
+��      ��      ��ũ����1_-_���纻_5CtGC5x.png
+��      ��      ��ũ����1_-_���纻_9B2mvac.png
+��      ��      ��ũ����1_-_���纻_9dF4hHz.png
+��      ��      ��ũ����1_-_���纻_9i1zLjI.png
+��      ��      ��ũ����1_-_���纻_elqYegd.png
+��      ��      ��ũ����1_-_���纻_H94aQwi.png
+��      ��      ��ũ����1_-_���纻_kL21NBB.png
+��      ��      ��ũ����1_-_���纻_kSQE1au.png
+��      ��      ��ũ����1_-_���纻_Lb3kR2J.png
+��      ��      ��ũ����1_-_���纻_PToOiZo.png
+��      ��      ��ũ����1_-_���纻_QbNzIRe.png
+��      ��      ��ũ����1_-_���纻_tUTkf6K.png
+��      ��      ��ũ����1_-_���纻_wDn9sTc.png
+��      ��      ��ũ����1_bdzP1ar.png
+��      ��      ��ũ����1_CDbCUfQ.png
+��      ��      ��ũ����1_HxZGvMu.png
+��      ��      ��ũ����1_j0mJeK9.png
+��      ��      ��ũ����1_N8oiC1C.png
+��      ��      ��ũ����1_qFYrz5S.png
+��      ��      
+��      ������ũ����(1)
+����fs_static
+��  ��  fsdropzone_main.js
+��  ��  style.css
+��  ��  utils.js
+��  ��  
+��  ����admin
+��  ��  ����css
+��  ��  ��  ��  autocomplete.css
+��  ��  ��  ��  base.css
+��  ��  ��  ��  changelists.css
+��  ��  ��  ��  dashboard.css
+��  ��  ��  ��  fonts.css
+��  ��  ��  ��  forms.css
+��  ��  ��  ��  login.css
+��  ��  ��  ��  nav_sidebar.css
+��  ��  ��  ��  responsive.css
+��  ��  ��  ��  responsive_rtl.css
+��  ��  ��  ��  rtl.css
+��  ��  ��  ��  widgets.css
+��  ��  ��  ��  
+��  ��  ��  ����vendor
+��  ��  ��      ����select2
+��  ��  ��              LICENSE-SELECT2.md
+��  ��  ��              select2.css
+��  ��  ��              select2.min.css
+��  ��  ��              
+��  ��  ����fonts
+��  ��  ��      LICENSE.txt
+��  ��  ��      README.txt
+��  ��  ��      Roboto-Bold-webfont.woff
+��  ��  ��      Roboto-Light-webfont.woff
+��  ��  ��      Roboto-Regular-webfont.woff
+��  ��  ��      
+��  ��  ����img
+��  ��  ��  ��  calendar-icons.svg
+��  ��  ��  ��  icon-addlink.svg
+��  ��  ��  ��  icon-alert.svg
+��  ��  ��  ��  icon-calendar.svg
+��  ��  ��  ��  icon-changelink.svg
+��  ��  ��  ��  icon-clock.svg
+��  ��  ��  ��  icon-deletelink.svg
+��  ��  ��  ��  icon-no.svg
+��  ��  ��  ��  icon-unknown-alt.svg
+��  ��  ��  ��  icon-unknown.svg
+��  ��  ��  ��  icon-viewlink.svg
+��  ��  ��  ��  icon-yes.svg
+��  ��  ��  ��  inline-delete.svg
+��  ��  ��  ��  LICENSE
+��  ��  ��  ��  README.txtt
+��  ��  ��  ��  search.svg
+��  ��  ��  ��  selector-icons.svg
+��  ��  ��  ��  sorting-icons.svg
+��  ��  ��  ��  tooltag-add.svg
+��  ��  ��  ��  tooltag-arrowright.svg
+��  ��  ��  ��  
+��  ��  ��  ����gis
+��  ��  ��          move_vertex_off.svg
+��  ��  ��          move_vertex_on.svg
+��  ��  ��          
+��  ��  ����js
+��  ��      ��  actions.js
+��  ��      ��  autocomplete.js
+��  ��      ��  calendar.js
+��  ��      ��  cancel.js
+��  ��      ��  change_form.js
+��  ��      ��  collapse.js
+��  ��      ��  core.js
+��  ��      ��  inlines.js
+��  ��      ��  jquery.init.js
+��  ��      ��  nav_sidebar.js
+��  ��      ��  popup_response.js
+��  ��      ��  prepopulate.js
+��  ��      ��  prepopulate_init.js
+��  ��      ��  SelectBox.js
+��  ��      ��  SelectFilter2.js
+��  ��      ��  urlify.js
+��  ��      ��  
+��  ��      ����admin
+��  ��      ��      DateTimeShortcuts.js
+��  ��      ��      RelatedObjectLookups.js
+��  ��      ��      
+��  ��      ����vendor
+��  ��          ����jquery
+��  ��          ��      jquery.js
+��  ��          ��      jquery.min.js
+��  ��          ��      LICENSE.txt
+��  ��          ��      
+��  ��          ����select2
+��  ��          ��  ��  LICENSE.md
+��  ��          ��  ��  select2.full.js
+��  ��          ��  ��  select2.full.min.js
+��  ��          ��  ��  
+��  ��          ��  ����i18n
+��  ��          ��          af.js
+��  ��          ��          ar.js
+��  ��          ��          az.js
+��  ��          ��          bg.js
+��  ��          ��          bn.js
+��  ��          ��          bs.js
+��  ��          ��          ca.js
+��  ��          ��          cs.js
+��  ��          ��          da.js
+��  ��          ��          de.js
+��  ��          ��          dsb.js
+��  ��          ��          el.js
+��  ��          ��          en.js
+��  ��          ��          es.js
+��  ��          ��          et.js
+��  ��          ��          eu.js
+��  ��          ��          fa.js
+��  ��          ��          fi.js
+��  ��          ��          fr.js
+��  ��          ��          gl.js
+��  ��          ��          he.js
+��  ��          ��          hi.js
+��  ��          ��          hr.js
+��  ��          ��          hsb.js
+��  ��          ��          hu.js
+��  ��          ��          hy.js
+��  ��          ��          id.js
+��  ��          ��          is.js
+��  ��          ��          it.js
+��  ��          ��          ja.js
+��  ��          ��          ka.js
+��  ��          ��          km.js
+��  ��          ��          ko.js
+��  ��          ��          lt.js
+��  ��          ��          lv.js
+��  ��          ��          mk.js
+��  ��          ��          ms.js
+��  ��          ��          nb.js
+��  ��          ��          ne.js
+��  ��          ��          nl.js
+��  ��          ��          pl.js
+��  ��          ��          ps.js
+��  ��          ��          pt-BR.js
+��  ��          ��          pt.js
+��  ��          ��          ro.js
+��  ��          ��          ru.js
+��  ��          ��          sk.js
+��  ��          ��          sl.js
+��  ��          ��          sq.js
+��  ��          ��          sr-Cyrl.js
+��  ��          ��          sr.js
+��  ��          ��          sv.js
+��  ��          ��          th.js
+��  ��          ��          tk.js
+��  ��          ��          tr.js
+��  ��          ��          uk.js
+��  ��          ��          vi.js
+��  ��          ��          zh-CN.js
+��  ��          ��          zh-TW.js
+��  ��          ��          
+��  ��          ����xregexp
+��  ��                  LICENSE.txt
+��  ��                  xregexp.js
+��  ��                  xregexp.min.js
+��  ��                  
+��  ����django_tables2
+��  ��  ��  bootstrap.css
+��  ��  ��  
+��  ��  ����themes
+��  ��      ����paleblue
+��  ��          ����css
+��  ��          ��      screen.css
+��  ��          ��      
+��  ��          ����img
+��  ��                  arrow-active-down.png
+��  ��                  arrow-active-up.png
+��  ��                  arrow-inactive-down.png
+��  ��                  arrow-inactive-up.png
+��  ��                  false.gif
+��  ��                  header-bg.png
+��  ��                  missing.png
+��  ��                  pagination-bg.gif
+��  ��                  true.gif
+��  ��                  
+��  ����dropzone
+��  ��      dropzone.css
+��  ��      dropzone.js
+��  ��      
+��  ����font-awesome
+��          font-awesome.min.css
+��          
+����logs
+��      mysite.log
+��      mysite_10452.log
+��      mysite_13616.log
+��      mysite_14516.log
+��      mysite_14620.log
+��      mysite_15616.log
+��      mysite_15816.log
+��      mysite_16472.log
+��      mysite_16840.log
+��      mysite_16960.log
+��      mysite_17544.log
+��      mysite_17756.log
+��      mysite_18116.log
+��      mysite_18276.log
+��      mysite_18392.log
+��      mysite_20656.log
+��      mysite_21508.log
+��      mysite_21900.log
+��      mysite_22620.log
+��      mysite_23728.log
+��      mysite_2488.log
+��      mysite_24964.log
+��      mysite_24968.log
+��      mysite_25312.log
+��      mysite_26188.log
+��      mysite_26984.log
+��      mysite_27080.log
+��      mysite_27976.log
+��      mysite_2832.log
+��      mysite_28660.log
+��      mysite_29460.log
+��      mysite_29724.log
+��      mysite_29796.log
+��      mysite_31028.log
+��      mysite_31708.log
+��      mysite_36020.log
+��      mysite_36208.log
+��      mysite_38500.log
+��      mysite_40476.log
+��      mysite_41356.log
+��      mysite_41844.log
+��      mysite_41964.log
+��      mysite_42044.log
+��      mysite_42152.log
+��      mysite_42228.log
+��      mysite_42956.log
+��      mysite_43108.log
+��      mysite_43724.log
+��      mysite_44852.log
+��      mysite_45180.log
+��      mysite_45768.log
+��      mysite_45776.log
+��      mysite_46504.log
+��      mysite_47284.log
+��      mysite_4756.log
+��      mysite_47848.log
+��      mysite_49132.log
+��      mysite_49472.log
+��      mysite_49532.log
+��      mysite_49540.log
+��      mysite_52532.log
+��      mysite_53568.log
+��      mysite_53572.log
+��      mysite_53956.log
+��      mysite_54640.log
+��      mysite_56908.log
+��      mysite_57012.log
+��      mysite_58852.log
+��      mysite_6460.log
+��      mysite_6832.log
+��      mysite_9396.log
+��      mysite_9876.log
+��      
+����mysite
+��  ��  asgi.py
+��  ��  settings.py
+��  ��  urls.py
+��  ��  wsgi.py
+��  ��  __init__.py
+��  ��  
+��  ����__pycache__
+��          settings.cpython-37.pyc
+��          urls.cpython-37.pyc
+��          wsgi.cpython-37.pyc
+��          __init__.cpython-37.pyc
+��          
+����notebook
+��      test.ipynb
+��      
+����scripts
+��      deployment_readme.md
+��      fileserver_sever_run.cmd
+��      nginx_sample.conf
+��      package_intall.bat
+��      venv_console.cmd
+��      
+����templates
+��  ��  base.html
+��  ��  filelist.html
+��  ��  footer.html
+��  ��  index.html
+��  ��  navi.html
+��  ��  
+��  ����admin
+��          base_site.html
+��          
+����test
+    ��  gunicorn.py
+    ��  uwsgi.py
+    ��  
+    ����__pycache__
+            gunicorn.cpython-37.pyc
+            
